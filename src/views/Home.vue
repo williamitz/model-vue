@@ -1,18 +1,48 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  
+  <div class="row">
+    <div class="col-12">
+      <h1>
+        Marvel Heroes
+      </h1>
+      <ModalHero typeHero="DC" />
+    </div>
   </div>
+  <hr>
+  <div class="row">
+
+      <div class="col card" style="width: 18rem;" v-for="(item, index) in heroes.dc" :key="index">
+        <img :src="item.urlImg" class="card-img-top" alt="...">
+      <div class="card-body">
+        {{ item.alias }}
+        <h5 class="card-title">
+          {{ item.nameHero }}
+        </h5>
+        <p class="card-text">
+          {{ item.power }}
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+  </div>
+
+
 </template>
 
 <script>
+import ModalHero from '../components/ModalHero'
+import {mapState} from 'vuex'
+
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    ModalHero
+  },
+  computed: {
+    ...mapState(['heroes'])
   }
 }
 </script>
